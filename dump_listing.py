@@ -21,7 +21,7 @@ DEFAULT_IGNORE_DIRS = {
     # VCS
     ".git", ".svn", ".hg",
     # Node
-    "node_modules", ".next", ".nuxt", "dist", "build", ".cache", ".parcel-cache",
+    "node_modules", ".next", ".nuxt", "dist", "build", ".cache", ".parcel-cache", "package-lock.json",
     ".turbo", ".vite",
     # Python
     "__pycache__", ".venv", "venv", "env", ".tox", ".mypy_cache", ".pytest_cache",
