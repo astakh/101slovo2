@@ -68,18 +68,20 @@ export default function ExercisePage() {
             <h2 className="text-xl font-medium text-gray-900 mb-2">Переведите предложение:</h2>
             <p className="text-lg text-gray-700">{exercise.target_sentence}</p>
           </div>
-          {exercise.target_words && exercise.target_words.length > 0 && (
-            <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-              <h3 className="text-sm font-medium text-gray-700 mb-3">Целевые слова:</h3>
-              <div className="flex flex-wrap gap-2">
-                {exercise.target_words.map((word) => (
+          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 className="text-sm font-medium text-gray-700 mb-3">Целевые слова для перевода:</h3>
+            <div className="flex flex-wrap gap-2">
+              {exercise.target_words && exercise.target_words.length > 0 ? (
+                exercise.target_words.map((word) => (
                   <span key={word.word_id} className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
                     {word.lemma}<span className="ml-1.5 text-xs text-blue-600">({word.pos})</span>
                   </span>
-                ))}
-              </div>
+                ))
+              ) : (
+                <span className="text-sm text-gray-500 italic">Нет целевых слов</span>
+              )}
             </div>
-          )}
+          </div>
           <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">Ваш перевод:</label>
             <textarea value={translation} onChange={(e) => setTranslation(e.target.value)} disabled={evaluateMutation.isPending} placeholder="Введите перевод на русский язык..." className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 resize-none" rows={4} maxLength={500} />
