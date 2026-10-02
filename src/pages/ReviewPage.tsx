@@ -27,15 +27,13 @@ export default function ReviewPage() {
   });
 
   const handleNext = async () => {
-    if (result?.lesson_completed) { navigate(`/lesson/${lessonId}/complete`); return; }
-    try {
-      const current = await apiClient.get<{ exercise_id: number }>("/lesson/" + lessonId + "/current");
-      navigate(`/lesson/${lessonId}/exercise/${current.exercise_id}`);
-    } catch (err) {
-      const error = err as any;
-      if (error?.error?.code === "lesson_not_active") { navigate(`/lesson/${lessonId}/summary`); return; }
-      navigate('/');
+    if (result?.lesson_completed) {
+      navigate(`/lesson/${lessonId}/complete`);
+      return;
     }
+    
+    // Navigate to lesson page which will find the current exercise
+    navigate(`/lesson/${lessonId}`);
   };
 
   if (isLoading) return <div className="flex items-center justify-center min-h-screen">Загрузка...</div>;

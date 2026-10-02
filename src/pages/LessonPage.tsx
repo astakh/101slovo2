@@ -28,7 +28,8 @@ const LessonPage: React.FC = () => {
             navigate("/lesson/preview", { replace: true });
             return;
           }
-          navigate("/lesson/preview", { replace: true });
+          // For other errors (e.g., no pending exercise), go to resume page
+          navigate(`/lesson/${lessonId}/resume`, { replace: true });
         }
       };
       fetchCurrentExercise();
